@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Help</title>
+    <style>
+        .head
+        {
+            height: 80px;
+            width: 100%;
+            background-color: aqua;
+            padding-top: 1px;
+        }
+        .main
+        {
+            height: 615px;
+            width: 100%;
+            background-color: aquamarine;
+
+        }
+        .left
+        {
+            height: 100%;
+            width: 20%;
+            background-color: rgb(230, 142, 209);
+            float: left;
+        }
+        .right
+        {
+            height: 100%;
+            width: 80%;
+            background-color: aquamarine;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <h1 align="center">Code Help</h1>
+    </div>
+    <div class="main">
+        <div class="left">
+            <table border="1px" align="center" style="width:100% ;text-align:center " >
+                <tr><td><a href="/" style="color:white ">add Student</a></td></tr>
+                <tr><td><a href="showstudents" >Show Student</a></td></tr>
+                <tr><td><a href="searchstudent" >Search Student</a></td></tr>
+                <tr><td><a href="joinstudent" >Join New Student</a></td></tr>
+                <tr><td><a href="showjoinstudent" >Show joined Student</a></td></tr>
+                <tr><td><a href="searchjoinedstudent" >Search joined Student</a></td></tr>
+                <tr><td><a href="batch" >Batch</a></td></tr>
+                <tr><td><a href="trainer" >Add Trainer</a></td></tr>
+            </table>
+        </div>
+        <div class="right">
+            <div style="margin: 35px;">
+                {%block content%}
+                  
+                {%endblock%}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

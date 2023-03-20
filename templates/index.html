@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{%block content%}
+  <h1>add Student</h1>
+<form action="addstudent" method="post">
+    {% csrf_token %}
+  <table align="center">
+    <tr>
+        <td>First name</td>
+        <td><input type="text" name="fname"></td>
+    </tr>
+    <tr>
+        <td>Last name</td>
+        <td><input type="text" name="lname"></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td><input type="email" name="email"></td>
+    </tr>
+    <tr>
+        <td>password</td>
+        <td><input type="password" name="password"></td>
+    </tr>
+    <tr>
+        <td>mobile</td>
+        <td><input type="number" name="mobile"></td>
+    </tr>
+    <tr>
+        <td>address</td>
+        <td><input type="text" name="address"></td>
+    </tr>
+    <tr>
+        <td>course</td>
+        <td><select name="course" >
+            <option >Java fullstack</option>
+            <option >Python fullstack</option>
+            <option >Mern</option>
+            <option >Mean</option>
+            <option >Java Core and advance</option>
+            <option >Python core and advance</option>
+            <option >Spring and Hibernate</option>
+            <option >Django and Rest</option>
+            <option >Oracle</option>
+            <option >Blockchain</option>
+            <option >Web designing</option>
+            <option >Angular</option>
+            <option >React</option>
+            <option >Data science</option>
+            <option >Java fullstack</option>
+            <option >C and C++</option>
+            <option >Dsa</option>
+        </select></td>
+    </tr>
+    <tr>
+        <td>Enquiry Date</td>
+        <td><input type="date" name="e_date" ></td>
+    </tr>
+    <tr>
+        <td>Remarks</td>
+        <td><textarea name="remarks"  cols="21" rows="3"></textarea></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit" value="Add new Enquiry"></td>
+    </tr> 
+  </table>
+</form>
+{% for message in messages %}
+  <script>
+    alert('{{message}}')
+  </script>
+{% endfor %}
+{%endblock%}

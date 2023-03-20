@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+  <table border="1px" align="center">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Course</th>
+        <th>Enquiry Date</th>
+        <th>Remarks</th>
+    </tr>
+    {% for i in st %}
+    <form action="updatestudent" method="post">
+        {% csrf_token %}
+      <tr>
+        <td>{{i.user.id}} <input type="hidden" name="id" value="{{i.user.id}}" ></td>
+        <td> {{i.name}} {{i.user.last_name}}</td>
+        <td>{{i.user.email}}</td>
+        <td> <input type="text" name="mobile" value="{{i.mobile}}"></td>
+        <td><input type="text" name="address" value="{{i.address}}"></td>
+        <td> <select name="course" >
+          <option >{{i.course}}</option>
+          <option >Java fullstack</option>
+          <option >Python fullstack</option>
+          <option >Mern</option>
+          <option >Mean</option>
+          <option >Java Core and advance</option>
+          <option >Python core and advance</option>
+          <option >Spring and Hibernate</option>
+          <option >Django and Rest</option>
+          <option >Oracle</option>
+          <option >Blockchain</option>
+          <option >Web designing</option>
+          <option >Angular</option>
+          <option >React</option>
+          <option >Data science</option>
+          <option >Java fullstack</option>
+          <option >C and C++</option>
+          <option >Dsa</option>
+      </select></td>
+        <td> {{i.edt}} </td>
+        <td> <textarea name="remarks"  cols="21" rows="3">{{i.remarks}}</textarea></td>
+        <td><input type="submit" value="update"></td>
+      </tr>
+    </form>
+    {% endfor %}
+  </table>
+{% endblock %}
