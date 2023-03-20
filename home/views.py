@@ -4,7 +4,20 @@ from django.contrib.auth.models import User
 from .models import Student,JoinedStudent,Trainer,Batch
 # Create your views here.
 def home(request):
-    return render(request,'index.html')
+    if request.method=='POST':
+        email=request.POST['email']
+        password=request.POST['password']
+        user=auth.authenticate(username=email,password=password)
+        if user is not None:
+            auth.login(request,user)
+            messages.info(request,'succesfullt logged in')
+            return render(request,'index.html')
+        else:
+            messages.info(request,'invalid username or password')
+            return render(request,'login.html')
+    else:
+        return render(request,'login.html')
+
 def addstudent(request):
     username=request.POST['email']
     fname=request.POST['fname']
