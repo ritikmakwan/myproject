@@ -2,57 +2,137 @@
 <html>
 <head>
     <title>Code Help</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .head
-        {
-            height: 80px;
-            width: 100%;
-            background-color: aqua;
-            padding-top: 1px;
-        }
-        .main
-        {
-            height: 615px;
-            width: 100%;
-            background-color: aquamarine;
+        /* Navbar */
+.navbar {
+    background-color: #343a40;
+    padding: 1rem;
+}
 
-        }
-        .left
-        {
-            height: 100%;
-            width: 20%;
-            background-color: rgb(230, 142, 209);
-            float: left;
-        }
-        .right
-        {
-            height: 100%;
-            width: 80%;
-            background-color: aquamarine;
-            float: left;
-        }
+.navbar-brand {
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.nav-link {
+    color: #fff;
+}
+
+/* Main Content */
+.main {
+    display: flex;
+    justify-content: center; /* Updated to center */
+    align-items: center; /* Added to center vertically */
+    height: 100vh; /* Added to set height to viewport height */
+}
+
+
+.left {
+    flex-basis: 25%;
+}
+
+.right {
+    flex-basis: 75%;
+    background-color: #f8f9fa;
+    padding: 1rem;
+}
+
+.content {
+    margin: 1rem;
+}
+
+/* Table */
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #343a40;
+    color: #fff;
+}
+
+td {
+    background-color: #f8f9fa;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #343a40;
+}
+
+a:hover {
+    color: #007bff;
+}
+
+
     </style>
 </head>
 <body>
-    <div class="head">
-        <h1 align="center">Code Help</h1>
-    </div>
-    <div class="main">
-        <div class="left">
-            <table border="1px" align="center" style="width:100% ;text-align:center " >
-                <tr><td><a href="/" style="color:white ">add Student</a></td></tr>
-                <tr><td><a href="showstudents" style="color:white ">Show Student</a></td></tr>
-                <tr><td><a href="searchstudent" style="color:white ">Search Student</a></td></tr>
-                <tr><td><a href="joinstudent" style="color:white ">Join New Student</a></td></tr>
-                <tr><td><a href="showjoinstudent" style="color:white ">Show joined Student</a></td></tr>
-                <tr><td><a href="searchjoinedstudent" style="color:white ">Search joined Student</a></td></tr>
-                <tr><td><a href="batch" style="color:white ">Batch</a></td></tr>
-                <tr><td><a href="trainer" style="color:white ">Add Trainer</a></td></tr>
-            </table>
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Code Help</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {% if user.is_authenticated %}
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="addstudent">Add Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="showstudents">Show Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="searchstudent">Search Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="joinstudent">Join New Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="showjoinstudent">Show joined Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="searchjoinedstudent">Search joined Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="batch">Batch</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout">Logout</a>
+                    </li>
+                </ul>
+            </div> 
+            {% endif %}
+            
         </div>
+    </nav>
+    <div class="main" >
+        
         <div class="right">
-            <div style="margin: 35px;">
+            <div class="content">
                 {%block content%}
                   
                 {%endblock%}

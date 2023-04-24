@@ -4,39 +4,72 @@ from django.contrib.auth.models import User
 from .models import Student,JoinedStudent,Trainer,Batch
 # Create your views here.
 def home(request):
+    return render(request,'index.html')
+
+def signup(request):
     if request.method=='POST':
+        username=request.POST['username']
+        fname=request.POST['fname']
+        lname=request.POST['lname']
+        email=request.POST['email']
+        password=request.POST['password']
+        rpassword=request.POST['rpassword']
+        if User.objects.filter(username=username).exists():
+            messages.info(request,'username already exists')
+            return redirect('/signup')
+        elif User.objects.filter(email=email).exists():
+            messages.info(request,'Email already exists')
+            return redirect("/signup")
+        elif password!=rpassword:
+            messages.info(request,'Password mismatch')
+            return redirect("/signup")
+        else:
+            user=User.objects.create_user(username=email,first_name=fname,last_name=lname,email=email,password=password)
+            user.save()
+            messages.info(request,"successfully signup")
+            return redirect("/")
+    else:
+        return render(request,'signup.html')
+def login(request):
+    if request.method=="POST":
         email=request.POST['email']
         password=request.POST['password']
         user=auth.authenticate(username=email,password=password)
+        print(user)
         if user is not None:
             auth.login(request,user)
-            messages.info(request,'succesfullt logged in')
-            return render(request,'index.html')
+            return redirect("/")
         else:
-            messages.info(request,'invalid username or password')
-            return render(request,'login.html')
+            messages.info(request,"invalid username or password")
+            return redirect("/login")
     else:
-        return render(request,'login.html')
-
+        return render(request,"login.html")
+def logout(request):
+    auth.logout(request)
+    messages.info(request,"Successfully logged out")
+    return redirect('/')
 def addstudent(request):
-    username=request.POST['email']
-    fname=request.POST['fname']
-    lname=request.POST['lname']
-    email=request.POST['email']
-    password=request.POST['password']
-    user=User.objects.create_user(username=username,first_name=fname,last_name=lname,email=email,password=password)
-    user.save()
-    s=Student()
-    s.user=user
-    s.name=fname
-    s.mobile=request.POST['mobile']
-    s.address=request.POST['address']
-    s.edt=request.POST['e_date']
-    s.remarks=request.POST['remarks']
-    s.course=request.POST['course']
-    s.save()
-    messages.info(request,'your form is submitted')
-    return render(request,'index.html')
+    if request.method=="POST":    
+        username=request.POST['email']
+        fname=request.POST['fname']
+        lname=request.POST['lname']
+        email=request.POST['email']
+        password=request.POST['password']
+        user=User.objects.create_user(username=username,first_name=fname,last_name=lname,email=email,password=password)
+        user.save()
+        s=Student()
+        s.user=user
+        s.name=fname
+        s.mobile=request.POST['mobile']
+        s.address=request.POST['address']
+        s.edt=request.POST['e_date']
+        s.remarks=request.POST['remarks']
+        s.course=request.POST['course']
+        s.save()
+        messages.info(request,'your form is submitted')
+        return render(request,'addstudent.html')
+    else:
+        return render(request,'addstudent.html')
 
 def showstudents(request):
     st=Student.objects.all()

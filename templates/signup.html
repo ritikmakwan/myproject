@@ -74,16 +74,24 @@
 </head>
 <body style="background-color: #6c757d;">
     <div class="container">
-        <h1>Login</h1>
-        <form action="login" method="post">
+        <h1>Sign Up</h1>
+        <form action="signup" method="post">
             {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            <label for="fname">First name</label>
+            <input type="text" name="fname" required>
+            <label for="lname">Last name</label>
+            <input type="text" name="lname" required>
             <label for="email">Email</label>
-            <input type="text" id="email" name="email" required>
+            <input type="email" id="email" name="email" required>
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
-            <input type="submit" value="Login">
+            <label for="repassword">Re-Password</label>
+            <input type="password" id="password" name="rpassword" required>
+            <input type="submit" value="Sign Up">
         </form>
-        <p>Don't have an account? <a href="signup">Sign up</a></p>
+        <p>Already have an account? <a href="login">Login</a></p>
     </div>
 </body>
 {% for message in messages %}
