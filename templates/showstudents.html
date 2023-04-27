@@ -43,9 +43,12 @@
       </select></td>
         <td> {{i.edt}} </td>
         <td> <textarea name="remarks"  cols="21" rows="3">{{i.remarks}}</textarea></td>
-        <td><input type="submit" value="update"></td>
-      </tr>
+        <td><input class="btn btn-dark" type="submit" value="update"></td>
+      
     </form>
+   
+      <td><a class="btn btn-dark" href="delete?id={{i.user_id}}">Delete</a></td>
+    </tr>
     {% endfor %}
   </table>
 {% endblock %}

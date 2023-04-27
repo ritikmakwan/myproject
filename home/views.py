@@ -209,3 +209,14 @@ def trainer(request):
         return redirect('/trainer')
     else:
         return render(request,'trainer.html')
+    
+def delete(request):
+    id=request.GET['id']
+    Student.objects.filter(user_id=id).delete()
+    return redirect("/showstudents")
+
+def deletejs(request):
+    id=request.GET['id']
+    JoinedStudent.objects.filter(id=id).delete()
+    return redirect("/showjoinstudent")
+    

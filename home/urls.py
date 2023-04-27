@@ -14,6 +14,8 @@ urlpatterns = [
     path('searchjoinedstudent',views.searchjoinedstudent,name="searchjoinedstudent"),
     path('batch',views.batch,name="batch"),
     path('trainer',views.trainer,name="trainer"),
-    path("logout",views.logout,name="logout")
+    path("logout",views.logout,name="logout"),
+    path("delete",views.delete,name="deletestudent"),
+    path("deletejs",views.deletejs,name="deletejs")
     
 ]

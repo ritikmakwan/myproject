@@ -29,9 +29,11 @@
         <td> <input type="date" name="last_date" value="{{i}}"></td>
         <td>{{i.duration}}</td>
         <td> <input type="number" name="dues" value="{{i.dues}}"></td>
-        <td><input type="submit" value="update"></td>
-      </tr>
+        <td><input class="btn btn-dark" type="submit" value="update"></td>
+      
     </form>
+    <td><a class="btn btn-dark" href="deletejs?id={{i.id}}">Delete</a></td>
+  </tr>
     {% endfor %}
 </table>
 {% endblock %}
